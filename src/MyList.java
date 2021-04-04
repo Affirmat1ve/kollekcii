@@ -52,9 +52,9 @@ public class MyList implements List {
     @Override
     public boolean add(Object o) {
         if (listSize >= maxSize) {
-            return false;
+            throw new IllegalStateException("Invalid list size");
         }
-        listArray[listSize++] = o;
+        listArray[listSize] = o;
         listSize++;
         return true;
     }
@@ -76,6 +76,7 @@ public class MyList implements List {
     public void add(int index, Object element) {
         if (listSize >= maxSize) {
             System.out.print("Invalid list size");
+            throw new IllegalStateException("Invalid list size");
         } else {
             for (int i = listSize; i > index; i--)  // Shift elements up
                 listArray[i] = listArray[i - 1];   //   to make room
